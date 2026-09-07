@@ -130,7 +130,7 @@ resource "aws_eks_node_group" "main" {
   scaling_config {
     desired_size = 2   # Two nodes running
     min_size     = 1   # Never go below 1
-    max_size     = 5   # Can scale to 2 if needed
+    max_size     = 5   # Can scale to 5 if needed
   }
 
   depends_on = [
