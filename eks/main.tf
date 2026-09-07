@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-south-1"
 }
 
 # VPC
@@ -15,14 +15,14 @@ resource "aws_vpc" "main" {
 resource "aws_subnet" "a" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.0.1.0/24"
-  availability_zone       = "us-east-1a"
+  availability_zone       = "ap-south-1a"
   map_public_ip_on_launch = true
 }
 
 resource "aws_subnet" "b" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.0.2.0/24"
-  availability_zone       = "us-east-1b"
+  availability_zone       = "ap-south-1b"
   map_public_ip_on_launch = true
 }
 
@@ -128,9 +128,9 @@ resource "aws_eks_node_group" "main" {
   instance_types = ["t3.medium"]  # 2 vCPU, 4GB
 
   scaling_config {
-    desired_size = 1   # Only 1 node running
+    desired_size = 2   # Two nodes running
     min_size     = 1   # Never go below 1
-    max_size     = 2   # Can scale to 2 if needed
+    max_size     = 5   # Can scale to 2 if needed
   }
 
   depends_on = [
@@ -148,5 +148,5 @@ output "cluster_name" {
 }
 
 output "connect_command" {
-  value = "aws eks update-kubeconfig --region us-east-1 --name my-eks-cluster"
+  value = "aws eks update-kubeconfig --region ap-south-1 --name my-eks-cluster"
 }
