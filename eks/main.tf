@@ -117,7 +117,7 @@ resource "aws_eks_cluster" "main" {
   ]
 }
 
-# NODE GROUP — 1 node minimum (cheapest possible)
+# NODE GROUP — 2 nodes minimum 
 
 resource "aws_eks_node_group" "main" {
   cluster_name    = aws_eks_cluster.main.name
